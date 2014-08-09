@@ -8,17 +8,37 @@ get '/users/new' do
 end
 
 # get login
+get '/sessions/new' do
+	erb :"sessions/new"
+end
 
 # post signup
 post '/users' do
-	# create a new user
-	# redirect to homepage
-	user = User.create(params[:user])
-	session[:user_id] = user.id
-	redirect '/hugs'
+	user = User.new(params[:user])
+	if user.save
+		session[:user_id] = user.id
+		redirect '/hugs'
+	else
+		@errors = user.errors.full_messages
+		erb :"/users/new"
+	end
+end
+
+delete '/sessions' do
+	session.clear
+	redirect '/'
 end
 
 # post login
+post '/sessions' do
+	user = User.find_by(email: params[:user][:email])
+	if user
+		session[:user_id] = user.id
+		redirect '/hugs'
+	else
+		redirect '/sessions/new'
+	end
+end
 
 # homepage
 get '/hugs' do
