@@ -3,7 +3,7 @@ get '/' do
 end
 
 get '/users/new' do
-	# @user = User.new
+	@user = User.new
 	erb :"users/new"
 end
 
@@ -42,5 +42,25 @@ end
 
 # homepage
 get '/hugs' do
+	current_user
 	erb :"hugs/index"
+end
+
+# Edit user
+get '/users/edit/:user_id' do
+	@user = User.find(params[:user_id])
+	erb :"users/edit"
+end
+
+# Update User
+put '/users/:user_id' do
+	@user = User.find(params[:user_id])
+	@user.update(params[:user])
+	redirect "/users/#{@user.id}"
+end
+
+# Profile Page
+get '/users/:user_id' do
+	current_user
+	erb :"users/show"
 end

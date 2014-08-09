@@ -5,6 +5,8 @@
 		<li><a href="/hugs/new">Receive A Hug</a></li>
 	</ul>
 
+	<p>Hey, view your <a href="/users/<%= @user.id %>">Profile Page</a>.</p>
+
 	<form class="logout" action="/sessions" method="POST">
 		<input type="hidden" name="_method" value="DELETE">
 		<button type="submit">Logout</button>

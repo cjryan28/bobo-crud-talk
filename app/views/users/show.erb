@@ -1,0 +1,13 @@
+<div class="container">
+	<h1><%= @user.username %> Hugging Profile</h1>
+
+	<ul>
+		<li><%= @user.username %></li>
+		<li><%= @user.email %></li>
+		<li><%= @user.hugger_type %></li>
+		<li><%= @user.description %></li>
+	</ul>
+
+	<p><a href="/users/edit/<%= @user.id %>">Edit Your Profile</a></p>
+
+</div>

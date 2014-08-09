@@ -1,0 +1,7 @@
+<div class="container">
+	<form class="edit" action="/users/<%= @user.id %>" method="POST">
+		<input type="hidden" name="_method" value="PUT">
+		<%= erb :"/users/_form", locals: { user: @user } %>
+		<input type="submit">
+	</form>
+</div>
